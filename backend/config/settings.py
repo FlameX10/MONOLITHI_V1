@@ -8,7 +8,7 @@ from pathlib import Path
 # ----------------------------------
 GEE_PROJECT = os.getenv(
     "GEE_PROJECT",
-    "monolith-484408"   # default for local dev
+    "monolith-510913"   # default for local dev
 )
 
 # ----------------------------------
@@ -16,6 +16,11 @@ GEE_PROJECT = os.getenv(
 # ----------------------------------
 
 BASE_DIR = Path(__file__).resolve().parents[2]
+
+GEE_SERVICE_ACCOUNT_PATH = os.getenv(
+    "GEE_SERVICE_ACCOUNT_PATH",
+    str(BASE_DIR / "backend" / "gee-service-account.json")
+)
 
 SHAPEFILE_PATH = os.getenv(
     "SHAPEFILE_PATH",

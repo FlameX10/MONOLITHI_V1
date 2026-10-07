@@ -30,9 +30,21 @@ def fetch_mine_pixel_timeseries_df(
     # --------------------------------------------------
     # 1️⃣ Initialize Earth Engine
     # --------------------------------------------------
+    from config.settings import GEE_SERVICE_ACCOUNT_PATH
+    from google.oauth2 import service_account
+
     try:
-        ee.Initialize(project=gee_project)
-    except Exception:
+        if GEE_SERVICE_ACCOUNT_PATH and os.path.exists(GEE_SERVICE_ACCOUNT_PATH):
+            credentials = service_account.Credentials.from_service_account_file(GEE_SERVICE_ACCOUNT_PATH)
+            scoped_credentials = credentials.with_scopes([
+                'https://www.googleapis.com/auth/earthengine', 
+                'https://www.googleapis.com/auth/cloud-platform'
+            ])
+            ee.Initialize(scoped_credentials, project=gee_project)
+        else:
+            ee.Initialize(project=gee_project)
+    except Exception as e:
+        print(f"[DEBUG] Earth Engine init exception: {e}")
         ee.Authenticate()
         ee.Initialize(project=gee_project)
 
