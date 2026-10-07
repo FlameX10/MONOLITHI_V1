@@ -1,0 +1,33 @@
+# -------------------------
+# Core Backend
+# -------------------------
+fastapi
+uvicorn[standard]
+
+# -------------------------
+# Database (PostgreSQL + PostGIS)
+# -------------------------
+sqlalchemy
+geoalchemy2
+psycopg2-binary
+
+# -------------------------
+# Data & ML
+# -------------------------
+pandas
+numpy
+scikit-learn
+
+# -------------------------
+# Geospatial (Python-side)
+# -------------------------
+geopandas
+shapely
+pyproj
+fiona
+
+# -------------------------
+# Google Earth Engine
+# -------------------------
+earthengine-api
+geemap
